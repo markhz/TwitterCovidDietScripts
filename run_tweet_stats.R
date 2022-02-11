@@ -42,7 +42,7 @@ filePath_labeled <- file.path("/projectnb/sph795/markhz/TwitterScripts/Data/Proc
 
 # filePathTweetClassifier <- file.path("Classifiers/TweetClassifier.RData")  
 
-filePathHexShp <- "us_states_hexgrid/us_states_hexgrid.shp"
+filePathHexShp <- "Data/ImportedData/us_states_hexgrid/us_states_hexgrid.shp"
 
 
 # load classifier

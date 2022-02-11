@@ -85,12 +85,8 @@ baseline_cov <-  c("p_healthy_before", "p_fastfood_before","p_alcohol_before")
 
 # outcome <- "p_healthy_diff_a"
 other_covariates <- c(
-                "rest_per10k", "groc_per10k", "liq_per10k", "bars_per10k",
-                "pct_obese", "pct_bingedrink",
-                "weeks_closed_rst", "weeks_closed_bar",
-                "pctchange_grocery","pctchange_retail_rec", "pctchange_residential")
+                "rest_per10k", "groc_per10k", "liq_per10k", "bars_per10k", "pctchange_residential")
 
-# "pctchange_grocery", "pctchange_retail_rec",
 
 # allVar <- c(outcome, covariates, baseline_cov)
 
@@ -128,8 +124,6 @@ healthy_food_cov <- c("p_healthy_before",
                       dem_covariates,
                       "groc_per10k",
                       "rest_per10k",
-                      # "weeks_closed_rst",
-                      # "pctchange_grocery",
                       "pctchange_residential",
                       "StateAbbr")
 
@@ -158,8 +152,7 @@ mdl_healthy_df$Variable <- recode_factor(mdl_healthy_df$Variable,
                                           "groc_per10k" = "Grocery Stores per 10,000",
                                          "rest_per10k" = "Restaurants per 10,000",
                                           "weeks_closed_rst" = "State Policy\nRestaurant Closures (weeks)",
-                                         "pctchange_grocery" = "Change in Visits to\nGrocery Stores/Pharmacies",
-                                          "pctchange_residential" = "% Change in Time Spent in\nPlaces of Residence")
+                                         "pctchange_residential" = "% Change in Time Spent in\nPlaces of Residence")
 
 
 
@@ -199,7 +192,6 @@ fastfood_food_cov <- c("p_fastfood_before",
                       dem_covariates,
                       "groc_per10k",
                       "rest_per10k",
-                      # "weeks_closed_rst",
                       "pctchange_residential",
                       "StateAbbr")
 
@@ -229,7 +221,6 @@ mdl_fastfood_df$Variable <- recode_factor(mdl_fastfood_df$Variable,
                                          "pctYoung" = "% Age 10-24 years",
                                          "groc_per10k" = "Grocery Stores per 10,000",
                                          "rest_per10k" = "Restaurants per 10,000",
-                                         "weeks_closed_rst" = "State Policy\nRestaurant Closures (weeks)",
                                          "pctchange_residential" = "% Change in Time Spent in\nPlaces of Residence")
 
 
@@ -267,7 +258,6 @@ alcohol_food_cov <- c("p_alcohol_before",
                       dem_covariates,
                       "bars_per10k", 
                       "liq_per10k",
-                      # "weeks_closed_bar",
                       "pctchange_residential",
                       "StateAbbr")
 
@@ -301,7 +291,6 @@ mdl_alcohol_df$Variable <- recode_factor(mdl_alcohol_df$Variable,
               "pctYoung" = "% Age 10-24 years",
               "bars_per10k" = "Bars per 10,000",
               "liq_per10k" = "Liquor Stores per 10,000",
-              "weeks_closed_bar" = "State Policy\n            Bar Closures (weeks)",
               "pctchange_residential" = "% Change in Time Spent in\nPlaces of Residence")
 
 

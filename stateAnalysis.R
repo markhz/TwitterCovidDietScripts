@@ -25,7 +25,7 @@ source("twitter_food_functions.R")
 # -------------------------------------------------------------------------
 
 
-filePathHexShp <- "us_states_hexgrid/us_states_hexgrid.shp"
+filePathHexShp <- "Data/ImportedData/us_states_hexgrid/us_states_hexgrid.shp"
 
 # load state tweet trends and join with state covariates
 df_state <- read.csv("Data/ProcessedData/df_filt_geo_Difference_BeforeAfter_State.csv") %>%
@@ -36,9 +36,7 @@ df_state <- read.csv("Data/ProcessedData/df_filt_geo_Difference_BeforeAfter_Stat
 shp_state <- st_read(filePathHexShp) %>%
   rename(StateAbbr = iso3166_2) %>%
   mutate(STATE = gsub(" \\(United States\\)", "", google_nam)) %>%
-  left_join(df_state, by = c("STATE"="State")) %>%
-  left_join(read.csv("Data/ProcessedData/State_covariates.csv"), by = "StateAbbr") 
-
+  left_join(df_state, by = c("STATE"="State")) 
 # shp_hex_geostate <- shp_state_hex %>%
 #   left_join(df_covidcompare_geostate, by = "STATE" )
 
