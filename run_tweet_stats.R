@@ -196,6 +196,23 @@ nrow(df_geo) / nrow(df_consumed) * 100
 table(df_geo$period_covid)
 
 
+
+# -------------------------------------------------------------------------
+# data to share
+# -------------------------------------------------------------------------
+
+
+# save analytic dataset to share
+df_forAnalysis <- df_geo %>%
+  rename(StateAbbr = place_state) %>%
+  mutate(alcohol = as.numeric(alcohol),
+         healthy = as.numeric(healthy),
+         fastfood = as.numeric(fastfood)) %>%
+  select(c("tweet_id", "GEOID", "STATE", "StateAbbr","period_covid", "healthy", "fastfood", "alcohol"))
+
+write.csv(df_forAnalysis, "Data/ProcessedData/df_forAnalysis.csv",
+          row.names = FALSE)
+
 # -------------------------------------------------------------------------
 # export data frame for modeling geotagged tweets
 # -------------------------------------------------------------------------
