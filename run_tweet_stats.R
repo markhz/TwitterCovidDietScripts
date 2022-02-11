@@ -358,51 +358,6 @@ write.csv(df_covidcompare_out, "Data/ProcessedData/TABLE1_BeforeAfterComparison.
 # -------------------------------------------------------------------------
 
 
-# # compare geotagged tweets pre-covid vs during covid in the U.S.
-# df_covidcompare_geo <- df_geo %>%
-#   filter(!invalid_foodterm & period_include) %>%
-#   group_by(period_covid) %>%
-#   get_summ_stats()%>%
-#   get_summ_diff()
-# 
-# write.csv(df_covidcompare_geo, "Data/ProcessedData/df_filt_Difference_BeforeAfter_AllGeotagged.csv",
-#           row.names = FALSE)
-
-# -------------------------------------------------------------------------
-
-# # number of total food tweets by state
-# df_N_placestate <- df %>%
-#   filter(!invalid_foodterm & place_state %in% uniqueStateAbrr) %>%
-#   count(place_state) %>%
-#   arrange(place_state)
-# 
-# # number of total food tweets by county
-# df_N_county <- df_geo %>%
-#   filter(!invalid_foodterm & place_state %in% uniqueStateAbrr) %>%
-#   count(place_state) %>%
-#   arrange(place_state)
-# 
-# write.csv(df_N_placestate, "Data/ProcessedData/FoodTweetCounts_State.csv")
-
-
-
-
-
-# # compare tweets pre-covid vs during covid by place_state
-# df_covidcompare_placestate <- df_consumed %>%
-#   filter(!invalid_foodterm & period_include & place_state %in% uniqueStateAbrr) %>%
-#   group_by(place_state, period_covid) %>%
-#   get_summ_stats() %>%
-#   get_summ_diff() %>%
-#   arrange(place_state) %>%
-#   ungroup()
-# 
-# 
-# write.csv(df_covidcompare_placestate, "Data/ProcessedData/df_filt_Difference_BeforeAfter_State.csv",
-#           row.names = FALSE)
-# 
-
-
 
 
 

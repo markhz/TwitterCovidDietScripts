@@ -97,8 +97,6 @@ df_cusp_state <- df_cusp %>%
   )  %>%
   
   ungroup() %>%
-  # mutate(days_closed_bar_sd = days_closed_bar / sd(days_closed_bar),
-         # days_closed_rst_sd = days_closed_rst / sd(days_closed_rst) ) %>%
   select( c("FIPS", "StateAbbr", "weeks_closed_bar","pct_closed_bar", "weeks_closed_rst",  "pct_closed_rst") )
 
 
@@ -113,12 +111,6 @@ df_google_state <- df_google %>%
   summarize( pctchange_retail_rec = mean(pctchange_retail_rec, na.rm = TRUE),
              pctchange_grocery = mean(pctchange_grocery, na.rm = TRUE),
              pctchange_residential = mean(pctchange_residential, na.rm = TRUE)) %>%
-  # mutate(pctchange_retail_rec_sd = (pctchange_retail_rec - mean( .$pctchange_retail_rec, na.rm = TRUE) ) / 
-  #          sd( .$pctchange_retail_rec, na.rm = TRUE)  ) %>%
-  # mutate(pctchange_grocery_sd = (pctchange_grocery - mean( .$pctchange_grocery, na.rm = TRUE) ) / 
-  #          sd( .$pctchange_grocery, na.rm = TRUE)  ) %>%
-  # mutate(pctchange_residential = (pctchange_residential - mean( .$pctchange_residential, na.rm = TRUE) ) / 
-  #          sd( .$pctchange_residential, na.rm = TRUE)  ) %>%
   filter(!is.na(pctchange_retail_rec) &
            !is.na(pctchange_grocery) & 
            !is.na(pctchange_residential) )
@@ -171,12 +163,6 @@ df_google_county <- df_google %>%
   summarize( pctchange_retail_rec = mean(pctchange_retail_rec, na.rm = TRUE),
              pctchange_grocery = mean(pctchange_grocery, na.rm = TRUE),
              pctchange_residential = mean(pctchange_residential, na.rm = TRUE)) %>%
-  # mutate(pctchange_retail_rec_sd = (pctchange_retail_rec - mean( .$pctchange_retail_rec, na.rm = TRUE) ) / 
-  #          sd( .$pctchange_retail_rec, na.rm = TRUE)  ) %>%
-  # mutate(pctchange_grocery_sd = (pctchange_grocery - mean( .$pctchange_grocery, na.rm = TRUE) ) / 
-  #          sd( .$pctchange_grocery, na.rm = TRUE)  ) %>%
-  # mutate(pctchange_residential = (pctchange_residential - mean( .$pctchange_residential, na.rm = TRUE) ) / 
-  #          sd( .$pctchange_residential, na.rm = TRUE)  ) %>%
   filter(!is.na(pctchange_retail_rec) &
            !is.na(pctchange_grocery) &
            !is.na(pctchange_residential) ) %>%
@@ -223,9 +209,6 @@ df_acs_county <- getAcsClean(year_in = 2019,
            "pctOld", "pctYoung",
            "pctLowIncome", "pctHighIncome", 
            "pctBlack", "pctWhite", "pctHisp"))
-  # select(c("FIPS", "FIPS_ST", "YEAR", 
-  #          "ICE_I", "E_INC_lo", "E_INC_hi", "E_POP_i", 
-  #          "ICE_B", "ICE_H", "ICE_BH", "E_NHWht", "E_NHBlk", "E_Hisp", "E_POP_r"))
 
 
 # import Community Business Patterns (CBP)  variables (county)

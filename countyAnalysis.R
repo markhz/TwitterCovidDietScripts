@@ -64,20 +64,6 @@ nrow(df_county)
 
 
 
-# numerator_thresh <- 5
-# 
-# # get counties with sufficient data
-# df_county <- df_county_in %>%
-#   # filter numerators less than 5 per county
-#   filter(n_fastfood_before + n_fastfood_during > numerator_thresh &
-#            n_healthy_before + n_healthy_during > numerator_thresh &
-#            n_alcohol_before + n_alcohol_during > numerator_thresh ) %>%
-#   filter(!is.na(pctchange_grocery ))
-
-
-
-
-
 
 # -------------------------------------------------------------------------
 # regression models
@@ -127,13 +113,9 @@ nrow(df_mdl)
 
 nrow(df_mdl) / nrow(df_mdl_tmp)
 
-# corMat<-cor(df_mdl, use = "complete.obs" )
-# corMat_high <- ifelse(abs(corMat) > 0.5, corMat, NA)
 
 
 
-
-# prcomp(df_mdl%>% select(-c("FIPS", "healthy", "fastfood", "alcohol") ) %>% drop_na(), scale=TRUE)
 # -------------------------------------------------------------------------
 # regression healthy food
 # -------------------------------------------------------------------------
@@ -225,11 +207,6 @@ fast_food_all_var <- c("fastfood", fastfood_food_cov)
 
 df_mdl_fastfood <- df_mdl %>%
   select(fast_food_all_var) 
-  # select(-c("FIPS",
-  #           "healthy", "alcohol", "liq_per10k", "bars_per10k",
-  #           "p_healthy_before","p_alcohol_before",
-  #           # baseline_cov,
-  #           "pct_bingedrink", "weeks_closed_bar"))
 
 
 
@@ -295,9 +272,6 @@ alcohol_food_cov <- c("p_alcohol_before",
                       "StateAbbr")
 
 
-# alcohol_food_cov <- c("p_alcohol_before",
-#                       "liq_per10k",
-#                       "StateAbbr")
 
 
 alcohol_all_var <- c("alcohol", alcohol_food_cov) 
@@ -305,11 +279,6 @@ alcohol_all_var <- c("alcohol", alcohol_food_cov)
 
 df_mdl_alcohol <- df_mdl %>%
   select(alcohol_all_var)
-  # select(-c("FIPS",
-  #           "healthy", "fastfood", "rest_per10k", "groc_per10k", 
-  #           "p_healthy_before","p_fastfood_before",
-  #           # baseline_cov,
-  #           "pct_obese", "weeks_closed_rst"))
 
 mdl_alcohol <- glm( alcohol ~ .,
                      data = df_mdl_alcohol,
@@ -514,149 +483,3 @@ ggsave(file.path(figOutPath, paste0("FIGURE3_OR_CI.tiff")) ,
        device = "tiff",
        height = 10,
        width = 10)
-
-# 
-# 
-# # -------------------------------------------------------------------------
-# 
-# 
-# 
-# # -------------------------------------------------------------------------
-# 
-# # join with select variables
-# df_mdl_healthy <- df_geo %>% select(c("FIPS", outcomeVar) ) %>%
-#   left_join( df_county %>% select(c("FIPS", covariates, baseline_cov)) ,
-#              by = "FIPS") %>%
-#   select(-c("FIPS"))
-# 
-# 
-# mdl_healthy <- glm( healthy ~ .,
-#                     data = df_mdl_healthy,
-#                     na.action=na.exclude,
-#                     family = "binomial")
-# summary(mdl_healthy)
-# 
-# 
-# # -------------------------------------------------------------------------
-# 
-# 
-# 
-# 
-# 
-# 
-# 
-# mdl_healthy_agg <- lm(p_healthy_during~ 
-#                     rest_per + groc_per + 
-#             pctchange_grocery + pctchange_retail_rec +
-#             OBESITY +
-#             days_closed_rst +
-#             ICE_I + ICE_H +
-#             p_healthy_before ,
-#           data = df_county,
-#           na.action=na.exclude)
-# summary(mdl_healthy_agg )
-# 
-# mdl <- lm(p_fastfood_during~ rest_per + groc_per + 
-#             pctchange_grocery + pctchange_retail_rec +
-#             OBESITY +
-#             days_closed_rst +
-#             ICE_I + ICE_H +
-#             p_fastfood_before ,
-#            data = df_county,
-#           na.action=na.exclude)
-# summary(mdl)
-# 
-# 
-# 
-# # alcohol model
-# mdl_alc <- lm(p_alcohol_during~ rest_per + groc_per + 
-#             pctchange_retail_rec +
-#             BINGE +
-#             days_closed_bar + days_closed_rst +
-#             ICE_I + ICE_H + ICE_B +
-#             p_alcohol_before ,
-#           data = df_county,
-#           na.action=na.exclude)
-# summary(mdl_alc)
-# # -------------------------------------------------------------------------
-# # plots
-# # -------------------------------------------------------------------------
-# 
-# 
-# 
-# 
-# ggplot(df_county) + geom_point(aes(x = OBESITY, y = p_fastfood_during), alpha = 0.5 )
-# ggplot(df_county) + geom_point(aes(x = OBESITY, y = p_healthy_during), alpha = 0.5 )
-# ggplot(df_county) + geom_point(aes(x = BINGE, y = p_alcohol_during), alpha = 0.5 )
-# 
-# ggplot(df_county) + geom_point(aes(x = ICE_I, y = OBESITY), alpha = 0.5 )
-# 
-# ggplot(df_county) + geom_point(aes(x = E_NHBlk/E_POP_r, y = p_healthy_during), alpha = 0.5 )
-# 
-# ggplot(df_county) + geom_point(aes(x = ICE_B, y = p_fastfood_before), alpha = 0.5 )
-# ggplot(df_county) + geom_point(aes(x = ICE_B, y = p_fastfood_diff_sd), alpha = 0.5 )
-# 
-# nrow(df_county_in)
-# nrow(df_county)
-# 
-# sum(df_county$N_before<50, na.rm = TRUE)
-# sum(df_county$N_during<50, na.rm = TRUE)
-# 
-# sum(df_county$n_fastfood_before<5, na.rm = TRUE)
-# 
-# 
-# 
-# # counties_sf <- get_urbn_map("counties", sf = TRUE)
-# 
-
-
-
-
-# -------------------------------------------------------------------------
-
-# 
-# # load state shapefile with population estimates
-# shp_county <- get_estimates(geography = "county",
-#                                 variables = "POP",
-#                                 year = 2019,
-#                                 geometry = TRUE) %>%
-#   filter(variable == "POP") %>%
-#   rename("POP2019" = "value",
-#          "fips" = "GEOID") %>%
-#   select(c("fips", "POP2019")) %>%
-#   left_join(df_county, by = "fips")
-# 
-# 
-# # df_county_plot <- df_county %>% select("FIPS", "p_healthy_diff_sd_lab") %>%
-# #   rename("fips" = "FIPS",
-# #          "values" = "p_healthy_diff_sd_lab")
-# 
-# 
-# 
-# 
-# # # healthy food difference
-# shp_county %>%
-#   plotCountyMap(outcomeStr = "p_healthy_diff_sd_lab") +
-#   guides(fill=guide_legend(title="Difference in share of food tweets\nrelated to healthy food\n(During vs. Before Pandemic)"))
-# 
-# ggsave( file.path("Output_Figures",paste0("_df_filt_CountyMap_p_healthy_diff_sd_lab_final.png")),
-#         height = 6, width = 9, device = "png")
-# 
-# 
-# # # fast food difference
-# shp_county %>%
-#   plotCountyMap(outcomeStr = "p_fastfood_diff_sd_lab") +
-#   guides(fill=guide_legend(title="Difference in share of food tweets\nrelated to fast food\n(During vs. Before Pandemic)"))
-# 
-# ggsave( file.path("Output_Figures",paste0("_df_filt_CountyMap_p_fastfood_diff_sd_lab_final.png")),
-#         height = 6, width = 9, device = "png")
-# 
-# 
-# 
-# # # alcohol difference
-# shp_county %>%
-#   plotCountyMap(outcomeStr = "p_alcohol_diff_sd_lab") +
-#   guides(fill=guide_legend(title="Difference in share of food tweets\nrelated to alcohol\n(During vs. Before Pandemic)"))
-# 
-# ggsave( file.path("Output_Figures",paste0("_df_filt_CountyMap_p_alcohol_diff_sd_lab_final.png")),
-#         height = 6, width = 9, device = "png")
