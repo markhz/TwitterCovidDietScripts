@@ -63,18 +63,18 @@ The ACS data were imported into the R using the tidycensus package.
 
 **Data/ImportedData/2020_US_Region_Mobility_Report.csv** <br />
 **Data/ImportedData/2021_US_Region_Mobility_Report.csv** <br />
-Google COVID-19 Community Mobility Reports data to characterize county-level changes in time spent in places of residence during the pandemic.
-Source: https://www.google.com/covid19/mobility/
+Google COVID-19 Community Mobility Reports data to characterize county-level changes in time spent in places of residence during the pandemic.<br />
+Source: https://www.google.com/covid19/mobility/<br />
 Date Accessed: March 27, 2021
 
 **Data/ImportedData/cbp_2018.csv** <br />
-Community Business Patterns data for 2017 and 2018 used to characterize number of food establishments per capita by county.
-Source: https://www.census.gov/programs-surveys/cbp.html
+Community Business Patterns data for 2017 and 2018 used to characterize number of food establishments per capita by county.<br />
+Source: https://www.census.gov/programs-surveys/cbp.html<br />
 Date Accessed: March 30, 2021
 
 **Data/ImportedData/us_states_hexgrid.shp** <br />
-Shapefile containing the hexagon shapes for mapping United States in Figure 2.
-Source: https://github.com/holtzy/D3-graph-gallery/blob/master/DATA/us_states_hexgrid.geojson.json
+Shapefile containing the hexagon shapes for mapping United States in Figure 2.<br />
+Source: https://github.com/holtzy/D3-graph-gallery/blob/master/DATA/us_states_hexgrid.geojson.json<br />
 Date Accessed: March 9, 2021
 
 
